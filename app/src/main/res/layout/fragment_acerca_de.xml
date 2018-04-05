@@ -26,13 +26,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingTop="15dp"
+            android:paddingBottom="15dp"
             android:text="@string/acerca_de_2" />
 
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
-            android:paddingTop="15dp"
+            android:paddingTop="0dp"
             android:src="@drawable/logomin"
             android:background="@color/colorAccent"/>
         <TextView
