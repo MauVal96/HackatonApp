@@ -7,10 +7,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
 import com.example.mauricio.hackatonapp.R;
 import com.example.mauricio.hackatonapp.api.LocalizacionApi;
 import com.example.mauricio.hackatonapp.application.MyApp;
@@ -19,19 +22,26 @@ import com.example.mauricio.hackatonapp.models.UpdateSet;
 
 import java.util.ArrayList;
 import com.example.mauricio.hackatonapp.models.Response;
+import com.google.android.gms.maps.model.Marker;
 
 import retrofit2.Call;
 
 import retrofit2.Callback;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private Fragment fragment;
+    private SwipeRefreshLayout refreshLayout;
     private Retrofit retrofit;
     private LocalizacionApi api;
+    private ArrayList<UpdateSet> updateSets;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,33 +49,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         navigationView = findViewById(R.id.nav_view);
         drawerLayout = findViewById(R.id.drawer_layout);
-        //instanceRetrofit();
-        //update();
+        refreshLayout = findViewById(R.id.swiperefresh);
+        retrofit = new Retrofit.Builder()
+                .baseUrl("http://merakiton.ddns.net/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        api = retrofit.create(LocalizacionApi.class);
+        update();
         setToolBar();
         setDefaultFragment();
 
-    }
 
-    private void update() {
-        Call<Response<ArrayList<UpdateSet>>> call = api.getResponse("be7a413e-2eff-4b87-a0f0-1c51d8e84357");
-        call.enqueue(new Callback<Response<ArrayList<UpdateSet>>>() {
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onResponse(Call<Response<ArrayList<UpdateSet>>> call, retrofit2.Response<Response<ArrayList<UpdateSet>>> response) {
-                ArrayList <UpdateSet> updateSets = response.body().getUpdate_set();
-
-                System.err.println(response.errorBody().toString());
-            }
-
-            @Override
-            public void onFailure(Call<Response<ArrayList<UpdateSet>>> call, Throwable t) {
-
+            public void onRefresh() {
+                update();
             }
         });
-    }
 
-    private void instanceRetrofit() {
-        this.retrofit = MyApp.getInstance("http://merakiton.ddns.net/data/");
-        this.api = retrofit.create(LocalizacionApi.class);
+
+
 
     }
 
@@ -113,5 +116,33 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    private void instanceRetrofit() {
+
+    }
+
+    private void update() {
+        Call<Response<ArrayList<UpdateSet>>> call = api.getResponse("be7a413e-2eff-4b87-a0f0-1c51d8e84357");
+        call.enqueue(new Callback<Response<ArrayList<UpdateSet>>>() {
+            @Override
+            public void onResponse(Call<Response<ArrayList<UpdateSet>>> call, retrofit2.Response<Response<ArrayList<UpdateSet>>> response) {
+                updateSets = response.body().update_set;
+                Toast.makeText(MainActivity.this,"Si se pudo",Toast.LENGTH_SHORT).show();
+                refreshLayout.setRefreshing(false);
+
+            }
+
+            @Override
+            public void onFailure(Call<Response<ArrayList<UpdateSet>>> call, Throwable t) {
+                Toast.makeText(MainActivity.this,"Error en la conexión",Toast.LENGTH_SHORT).show();
+                refreshLayout.setRefreshing(false);
+
+
+            }
+        });
+    }
+
+
+
 
 }

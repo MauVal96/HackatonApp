@@ -1,32 +1,15 @@
 package com.example.mauricio.hackatonapp.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class Response <T>{
+    @SerializedName("last_update")
+    public double last_update;
+    @SerializedName("update_set")
+    public T update_set;
 
-    private double last_update;
-    private T update_set;
-
-    public T getUpdate_set() {
-        return update_set;
-    }
-
-    public void setUpdate_set(T update_set) {
-        this.update_set = update_set;
-    }
-
-    public Response(double last_update, T update_set) {
-        this.last_update = last_update;
-        this.update_set = update_set;
-    }
-
-    public double getLast_update() {
-        return last_update;
-    }
-
-    public void setLast_update(double last_update) {
-        this.last_update = last_update;
-    }
 
 
 

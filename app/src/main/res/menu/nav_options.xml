@@ -11,36 +11,26 @@
                     <item
                         android:id="@+id/menu_main"
                         android:icon="@drawable/home_icon"
-                        android:title="Menú principal" />
+                        android:title="Map Event" />
                 </group>
             </menu>
         </item>
 
         <item
 
-            android:title="Proyectos"
+            android:title="Otras opciones"
             android:titleCondensed="true">
             <menu>
                 <group android:checkableBehavior="single">
                     <item
                         android:id="@+id/proyecto_1"
                         android:icon="@drawable/project_icon"
-                        android:title="Proyecto 1" />
-                </group>
-            </menu>
-        </item>
-
-
-        <item android:title="Otras Opciones">
-            <menu>
-                <group android:checkableBehavior="single">
-
-
+                        android:title="Trending" />
 
                     <item
                         android:id="@+id/integrantes"
                         android:icon="@drawable/group_icon"
-                        android:title="Integrantes" />
+                        android:title="Historia" />
                     <item
                         android:id="@+id/acerca_de"
                         android:icon="@android:drawable/ic_dialog_info"

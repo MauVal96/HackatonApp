@@ -1,16 +1,17 @@
 package com.example.mauricio.hackatonapp.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UpdateSet {
 
     private double update_epoch;
-    private List<Observations> observations;
+    private ArrayList<Observations> observations;
     private String apTags[];
     private String apMac;
     private String apFloors[];
 
-    public UpdateSet(double update_epoch, List<Observations> observations, String[] apTags, String apMac, String[] apFloors) {
+    public UpdateSet(double update_epoch, ArrayList<Observations> observations, String[] apTags, String apMac, String[] apFloors) {
         this.update_epoch = update_epoch;
         this.observations = observations;
         this.apTags = apTags;
@@ -26,11 +27,11 @@ public class UpdateSet {
         this.update_epoch = update_epoch;
     }
 
-    public List<Observations> getObservations() {
+    public ArrayList<Observations> getObservations() {
         return observations;
     }
 
-    public void setObservations(List<Observations> observations) {
+    public void setObservations(ArrayList<Observations> observations) {
         this.observations = observations;
     }
 
