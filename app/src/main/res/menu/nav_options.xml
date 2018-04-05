@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+
+        <item
+
+            android:title="Inicio"
+            android:titleCondensed="true">
+            <menu>
+                <group android:checkableBehavior="single">
+                    <item
+                        android:id="@+id/menu_main"
+                        android:icon="@drawable/home_icon"
+                        android:title="Menú principal" />
+                </group>
+            </menu>
+        </item>
+
+        <item
+
+            android:title="Proyectos"
+            android:titleCondensed="true">
+            <menu>
+                <group android:checkableBehavior="single">
+                    <item
+                        android:id="@+id/proyecto_1"
+                        android:icon="@drawable/project_icon"
+                        android:title="Proyecto 1" />
+                </group>
+            </menu>
+        </item>
+
+
+        <item android:title="Otras Opciones">
+            <menu>
+                <group android:checkableBehavior="single">
+
+
+
+                    <item
+                        android:id="@+id/integrantes"
+                        android:icon="@drawable/group_icon"
+                        android:title="Integrantes" />
+                    <item
+                        android:id="@+id/acerca_de"
+                        android:icon="@android:drawable/ic_dialog_info"
+
+                        android:title="Acerca de..." />
+
+                </group>
+
+            </menu>
+        </item>
+    </group>
+
+</menu>
