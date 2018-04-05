@@ -25,14 +25,15 @@ public class Triangulation {
 
     public static ArrayList<Location> ubiMeraki(ArrayList<UpdateSet> accessP)
     {
-        ArrayList<Observations> obsAux = new ArrayList<>();
+        ArrayList<Observations> obsAux;
         ArrayList<Location> uMer= new ArrayList<>();
-        for (int i = 0; i < accessP.size(); i++)
-        {
-         obsAux = accessP.get(i).getObservations();
-            for (int j = 0; j < obsAux.size(); j++) {
-                uMer.add(obsAux.get(j).getLocation());
+        if (accessP!=null) {
+            for (int i = 0; i < accessP.size(); i++) {
+                obsAux = accessP.get(i).getObservations();
+                for (int j = 0; j < obsAux.size(); j++) {
+                    uMer.add(j, obsAux.get(j).getLocation());
 
+                }
             }
         }
         return uMer;

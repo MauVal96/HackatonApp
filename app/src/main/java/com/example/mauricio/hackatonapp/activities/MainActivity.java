@@ -2,6 +2,7 @@ package com.example.mauricio.hackatonapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -17,7 +18,12 @@ import android.widget.Toast;
 import com.example.mauricio.hackatonapp.R;
 import com.example.mauricio.hackatonapp.api.LocalizacionApi;
 import com.example.mauricio.hackatonapp.application.MyApp;
+import com.example.mauricio.hackatonapp.fragments.AcercaDeFragment;
+import com.example.mauricio.hackatonapp.fragments.HistorialFragment;
 import com.example.mauricio.hackatonapp.fragments.MapFragment;
+import com.example.mauricio.hackatonapp.fragments.PerfilFragment;
+import com.example.mauricio.hackatonapp.fragments.TrendingFragment;
+import com.example.mauricio.hackatonapp.interfaces.Comunicator;
 import com.example.mauricio.hackatonapp.models.UpdateSet;
 
 import java.util.ArrayList;
@@ -34,14 +40,16 @@ public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
-    private Fragment fragment;
+    private MapFragment fragment = new MapFragment();
+    private Fragment fragmentVol;
     private SwipeRefreshLayout refreshLayout;
     private Retrofit retrofit;
     private LocalizacionApi api;
     private ArrayList<UpdateSet> updateSets;
 
-
-
+    public ArrayList<UpdateSet> getUpdateSets() {
+        return updateSets;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         api = retrofit.create(LocalizacionApi.class);
+
         update();
         setToolBar();
         setDefaultFragment();
@@ -67,15 +76,52 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                boolean fragmentTransaction = false;
+                int select;
+                switch (item.getItemId()) {
+                    case R.id.menu_main:
+                        selectFragment(fragment,item);
+                        fragmentTransaction = false;
+                        break;
+                    case R.id.proyecto_1:
+                        fragmentVol = new TrendingFragment();
+                        fragmentTransaction = true;
+                        break;
+                    case R.id.integrantes:
+                        fragmentVol = new HistorialFragment();
+                        fragmentTransaction = true;
+                        break;
+                    case R.id.acerca_de:
+                        fragmentVol = new AcercaDeFragment();
+                        fragmentTransaction = true;
+                        break;
+                    case R.id.perfil:
+                    fragmentVol = new PerfilFragment();
+                    fragmentTransaction = true;
+                    break;
+
+                }
+                if (fragmentTransaction) {
+                    selectFragment(fragmentVol,item);
+                }
+                return true;
+            }
+        });
+
 
 
 
     }
 
 
+
+
     private void setDefaultFragment() {
         MenuItem item = navigationView.getMenu().getItem(Menu.FIRST);
-        selectFragment(new MapFragment(),item);
+        selectFragment(fragment,item);
         item.setChecked(true);
     }
 
@@ -127,7 +173,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Response<ArrayList<UpdateSet>>> call, retrofit2.Response<Response<ArrayList<UpdateSet>>> response) {
                 updateSets = response.body().update_set;
-                Toast.makeText(MainActivity.this,"Si se pudo",Toast.LENGTH_SHORT).show();
+                fragment.setUpdateSets(updateSets);
+                Toast.makeText(MainActivity.this,"Localizacion de dispositivos realizada",Toast.LENGTH_SHORT).show();
                 refreshLayout.setRefreshing(false);
 
             }
