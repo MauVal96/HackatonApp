@@ -5,22 +5,22 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="acerca_de_1">Solucion propuesta por el teamNashorn
+    <string name="acerca_de_1">Solución propuesta por el teamNashorn
     </string>
-    <string name="acerca_de_2">Los eventos de asistencia masiva a pesar de contar con un gran número de personas en su staff y
+    <string name="acerca_de_2">Problematica: Los eventos de asistencia masiva a pesar de contar con un gran número de personas en su staff y
         amplia difusión de sus actividades, en ocasiones no logran alcanzar de manera satisfactoria a todos los asistentes, esta
         es la razón por la cual hay actividades que cuentan con un número de asistentes menor del esperado o que no son del conocimiento
         de todos al momento de llevarse a cabo.
+
     </string>
 
-    <string name="acerca_de_3">La solución propuesta para esta problemática es la utilización de los datos otorgados por la API para relacionar
-        la ubicación de los dispositivos dentro de la expo con los escenarios y workshops, para así ofrecer lugares disponibles en las
+    <string name="acerca_de_3">La solución propuesta para esta problemática es la utilización de los datos otorgados por la API de Cisco para relacionar
+        la ubicación de los dispositivos conectados dentro de la expo con los escenarios y workshops, para así ofrecer lugares disponibles en las
         conferencias y talleres que no se encuentren al máximo de su capacidad.
     </string>
 
-    <string name="acerca_de_4">Todo el código presentado en esta solución ha sido realizado desde cero, evitando cualquier
-        posible plagio.Cuidadosamente se validó las entradas de datos en los generadores de
-        números pseudoaleatorios, esto con la finalidad de volver a la aplicación más intuitiva, protegerla, y mejorar la UX.
+    <string name="acerca_de_4">Con lo anterior se espera mejorar la experiencia durante el evento, reducir los tiempos en filas y proporcionar
+        al usuario oportunidades diferentes a las que tenia contepladas incialmente, esto en base a sus preferencias iniciales.
     </string>
 
 

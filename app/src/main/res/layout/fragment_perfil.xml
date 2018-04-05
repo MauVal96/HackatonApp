@@ -12,7 +12,7 @@
         android:orientation="vertical"
         android:layout_margin="20dp">
         <LinearLayout
-            android:paddingLeft="130dp"
+            android:paddingLeft="110dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -113,5 +113,12 @@
 
 
     </LinearLayout>
+
+    <Button
+        android:text="Guardar"
+        android:layout_gravity="bottom"
+        android:background="@color/colorPrimaryLight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </FrameLayout>

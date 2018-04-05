@@ -33,7 +33,7 @@
                         android:title="Historia" />
                     <item
                         android:id="@+id/acerca_de"
-                        android:icon="@android:drawable/ic_dialog_info"
+                        android:icon="@drawable/about_icon"
 
                         android:title="Acerca de..." />
 
