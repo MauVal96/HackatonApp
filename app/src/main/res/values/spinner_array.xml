@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="lands_array">
+        <item>Iron Land</item>
+        <item>Gamer Land</item>
+        <item>Creative Land</item>
+        <item>Startup Land</item>
+        <item>Future Land</item>
+        <item>Developer Land</item>
+    </string-array>
+
+    <string-array name="temas_array">
+        <item>Robotica y Drones</item>
+        <item>Competencia</item>
+        <item>Marketing</item>
+        <item>Inversion</item>
+        <item>IoT</item>
+        <item>Criptomonedas</item>
+    </string-array>
+
+</resources>
